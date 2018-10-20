@@ -85,24 +85,6 @@ doc_answer= []
 QA_dict ={}
 
 
-for i in range(len(doc_a_sents)):
-    
-    num1 = re.findall(r'\?', doc_a_sents[i])
-    if num1:   
-        doc_question.append(doc_a_sents[i])
-                     
-    else:
-        doc_answer.append(doc_a_sents[i])
-        
-
-
-columns = ["Question","Answer","Mark"]
-
-index = pd.Series(range(0,len(doc_question)))
-
-QA_sum = pd.DataFrame(index = index, columns=columns)
-
-
 
 for i in range(len(doc_question)):
     
@@ -125,42 +107,6 @@ for i in range(len(doc_question)):
 tempFile = open(file_q, 'r+' )   
     
 doc = Document(file_q)      
-for i in range(len(QA_sum['Mark'])):
-    
-    clean_title = re.match(r'(.*)\(.*\)', QA_sum['Mark'][i].lower())
-    if clean_title:
-        keywords = clean_title.group(0).rstrip()
-    
-    keywords = keywords[keywords.find("(")+1:keywords.find(")")]
-        
-   # re.findall(keywords, full_text_q)
-    
-    #title = re.match(keywords, full_text_q.lower())
-    title = re.findall(keywords, full_text_q.lower())
-    
-    if title:
-        full_text_q = (full_text_q.replace(keywords, QA_sum['Answer'][i]))
-    
-    for para in doc.paragraphs:
-        title = re.findall(keywords, para.text)
-        if title:
-            rep_text = para.text
-            rep_text = (rep_text.replace(keywords, QA_sum['Answer'][i]))
-            para.text = rep_text
-        
-    
-        
-     
-     
-## Save full_text_q as new document
-
-
-fileOut = '/Users/haibinli/Lawli/Code/Template3.docx'
-                   
-doc.save(fileOut)                  
-
- 
-
 
 
 
