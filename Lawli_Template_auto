@@ -57,16 +57,8 @@ QA_dict ={}
 for i in range(len(doc_question)):
     
     clean_title = re.match(r'(.*)\(.*\)', doc_question[i].lower()) 
-    if clean_title:
-        QA_sum['Question'][i] = clean_title.group(1).rstrip() 
-    else: QA_sum['Question'][i] = doc_question[i]
     
     QA_sum['Mark'][i] = doc_question[i][doc_question[i].find("("):doc_question[i].find(")")+1]
-    
-         
-    try:
-        input_arg = sys.argv
-        QA_sum['Answer'][i] = input_arg[i]
     
     except IndexError:
         QA_sum['Answer'][i] = input( QA_sum['Question'][i])
