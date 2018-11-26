@@ -5,24 +5,12 @@ Created on Thu Sep 13 16:21:45 2018
 
 @author: haibinli
 """
-import docx
-from docx import Document
-import pandas as pd
-import os
-import codecs
-import re
-import nltk
-
 import argparse
 import datetime
 from dateutil.parser import parse
 
-from docx.shared import Inches, Pt
-from docx.oxml.ns import qn
-from docx.enum.text import WD_ALIGN_PARAGRAPH
+
 import time,datetime
-import shutil
-import configparser
 from datetime import datetime
 
 import sys
@@ -47,28 +35,9 @@ for a in path_a.paragraphs:
 
 path_a.styles
 
-
-
-def getText(filename):
-    doc = docx.Document(filename)
-    fullText = []
-    for para in doc.paragraphs:
-        fullText.append(para.text)
-    return '\n'.join(fullText)
-
-
-
-
 full_text_q = getText(file_q)
 full_text_a = getText(file_a)
 
-
-
-    
-def cleanhtml(raw_html):
-  cleanr = re.compile('<.*?>')
-  cleantext = re.sub(cleanr, '', raw_html)
-  return cleantext
 
 
 # full_text2_clean = cleanhtml(full_text2)
